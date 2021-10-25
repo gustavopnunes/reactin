@@ -1,0 +1,25 @@
+endpoint user: 
+	username, 
+	job,
+	company,
+	avatarUrl
+	
+endpoint posts:
+	title,
+	content,
+	imageUrl,
+	time,
+	author,
+	authorJob,
+	authorCompany,
+	
+post reactions onClick: sum or remove reaction
+
+change reactions icons
+
+
+register page
+	name, email, password, confirmPassword, job, company, avatar
+login page
+
+	
