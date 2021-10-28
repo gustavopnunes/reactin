@@ -4,7 +4,6 @@ import jwtDecode from "jwt-decode";
 import axios from "axios";
 import faker from "faker";
 import toast from "react-hot-toast";
-import apiNews from "api-news-world";
 
 export const DataContext = createContext();
 
@@ -17,12 +16,6 @@ const DataProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoadingFeed, setIsLoadingFeed] = useState(false);
   const [lastId, setLastId] = useState(0);
-
-  useEffect(() => {
-    apiNews
-      .getNews("br", "pt", "technology")
-      .then((response) => console.log(response));
-  }, []);
 
   const getUserData = (token) => {
     const userId = jwtDecode(token).sub;
@@ -44,39 +37,45 @@ const DataProvider = ({ children }) => {
       .catch(() => toast.error("Algo deu errado ao atualizar seus dados :("));
   };
 
-  const url =
-    "http://newsapi.org/v2/top-headlines?apiKey=94c62a1273524c719ba2648ff3005961&country=br&language=pt&category=technology&pageSize=5&page=";
+  const url = "https://dummyapi.io/data/v1/post?limit=5&page=";
+
+  //617b08a0bdaa71cf38cf6d72
 
   useEffect(() => {
     setIsLoadingFeed(true);
     axios
-      .get(`${url}${currentPage}`)
+      .get(`${url}${currentPage}`, {
+        headers: {
+          "app-id": "617b08a0bdaa71cf38cf6d72",
+        },
+      })
       .then((response) => {
-        let data = response.data.articles;
-        let modifiedPosts = [];
-        let id = lastId;
-        for (let i = 0; i < data.length; i++) {
-          const newPost = {
-            ...data[i],
-            id: id + 1,
-            readers: Math.floor(Math.random() * 1000),
-            time: Math.floor(Math.random() * 7 + 1),
-            author: {
-              name: faker.name.findName(),
-              job: faker.name.jobTitle(),
-              company: faker.company.companyName(),
-              avatarUrl: faker.internet.avatar(),
-            },
-            reactions: Math.floor(Math.random() * 1000),
-          };
-          modifiedPosts.push(newPost);
-          id++;
-        }
-        setLastId(id + 1);
-        setPosts([...posts, ...modifiedPosts]);
-        setIsLoading(false);
-        setTrending(modifiedPosts.slice(0, 5));
-        return [response.data.articles];
+        console.log(response.data);
+        // let data = response.data.articles;
+        // let modifiedPosts = [];
+        // let id = lastId;
+        // for (let i = 0; i < data.length; i++) {
+        //   const newPost = {
+        //     ...data[i],
+        //     id: id + 1,
+        //     readers: Math.floor(Math.random() * 1000),
+        //     time: Math.floor(Math.random() * 7 + 1),
+        //     author: {
+        //       name: faker.name.findName(),
+        //       job: faker.name.jobTitle(),
+        //       company: faker.company.companyName(),
+        //       avatarUrl: faker.internet.avatar(),
+        //     },
+        //     reactions: Math.floor(Math.random() * 1000),
+        //   };
+        //   modifiedPosts.push(newPost);
+        //   id++;
+        // }
+        // setLastId(id + 1);
+        // setPosts([...posts, ...modifiedPosts]);
+        // setIsLoading(false);
+        // setTrending(modifiedPosts.slice(0, 5));
+        // return [response.data.articles];
       })
       .catch((error) => toast.error("Algo deu errado ao carregar o feed :("));
     // eslint-disable-next-line
