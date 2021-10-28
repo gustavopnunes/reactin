@@ -1,19 +1,20 @@
-import styled, { css } from 'styled-components';
-import { BsPencilSquare } from 'react-icons/bs';
+import styled, { css } from "styled-components";
+import { BsPencilSquare } from "react-icons/bs";
 import {
   AiOutlineCamera,
   AiOutlineVideoCamera,
   AiOutlineFileText,
   AiOutlineProfile,
-} from 'react-icons/ai';
+} from "react-icons/ai";
 
 export const Container = styled.div`
-  color: var(--color-gray);
-
+  color: var(--textColor);
+  background-color: var(--panelColor);
   .write {
     display: flex;
     align-items: center;
     padding: 18px 24px;
+    background-color: var(--colorPanel);
 
     > span {
       margin-left: 8px;
@@ -29,7 +30,7 @@ export const Container = styled.div`
       justify-content: space-between;
       height: 100%;
       padding: 0 24px;
-      border-top: 1px solid var(--color-separator);
+      border-top: 1px solid var(--separatorColor);
 
       button {
         display: flex;
@@ -38,7 +39,7 @@ export const Container = styled.div`
         align-items: center;
         background: none;
         border: none;
-        color: var(--color-gray);
+        color: var(--textColor);
         font-weight: 600;
 
         cursor: pointer;

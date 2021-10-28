@@ -1,58 +1,28 @@
-import React from "react";
-
 import Panel from "../../Panel";
 
 import { Container } from "./styles";
 
-const TrendingPanel = () => {
+const TrendingPanel = ({ title, topics }) => {
   return (
     <Container>
       <Panel>
-        <span className="title">Assuntos mais discutidos</span>
-
+        <span className="title">{title}</span>
         <ul>
-          <li>
-            <span className="bullet" />
-            <span className="news">
-              <span className="head">Bootcamp da Rocketseat</span>
-              <span className="subtext">há 1 d • 316 leitores</span>
-            </span>
-          </li>
-          <li>
-            <span className="bullet" />
-            <span className="news">
-              <span className="head">Bootcamp da Rocketseat</span>
-              <span className="subtext">há 1 d • 316 leitores</span>
-            </span>
-          </li>
-          <li>
-            <span className="bullet" />
-            <span className="news">
-              <span className="head">Bootcamp da Rocketseat</span>
-              <span className="subtext">há 1 d • 316 leitores</span>
-            </span>
-          </li>
-          <li>
-            <span className="bullet" />
-            <span className="news">
-              <span className="head">Bootcamp da Rocketseat</span>
-              <span className="subtext">há 1 d • 316 leitores</span>
-            </span>
-          </li>
-          <li>
-            <span className="bullet" />
-            <span className="news">
-              <span className="head">Bootcamp da Rocketseat</span>
-              <span className="subtext">há 1 d • 316 leitores</span>
-            </span>
-          </li>
-          <li>
-            <span className="bullet" />
-            <span className="news">
-              <span className="head">Bootcamp da Rocketseat</span>
-              <span className="subtext">há 1 d • 316 leitores</span>
-            </span>
-          </li>
+          {topics &&
+            topics.map((topic) => {
+              return (
+                <li key={topic.title}>
+                  <span className="bullet" />
+                  <span className="news">
+                    <span className="head">{topic.title}</span>
+                    <span className="subtext">
+                      {topic.subtext ||
+                        `${topic.time}d • ${topic.readers} leitores`}
+                    </span>
+                  </span>
+                </li>
+              );
+            })}
         </ul>
       </Panel>
     </Container>

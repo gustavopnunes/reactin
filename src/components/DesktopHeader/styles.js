@@ -3,13 +3,14 @@ import { GrLinkedin } from "react-icons/gr";
 import { AiFillHome, AiOutlineBell, AiFillCaretDown } from "react-icons/ai";
 
 export const Container = styled.header`
-  background-color: var(--color-header);
+  background-color: var(--feedHeaderColor);
   padding: 0 30px;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   display: none;
+  z-index: 2;
 
   @media (min-width: 1180px) {
     display: block;
@@ -31,6 +32,7 @@ export const Wrapper = styled.div`
 
   .right nav {
     height: 100%;
+    position: relative;
 
     button {
       background-color: transparent;
@@ -42,15 +44,35 @@ export const Wrapper = styled.div`
       justify-content: center;
       min-width: 90px;
       min-height: 100%;
-      color: var(--color-icons);
+      color: var(--iconColor);
       cursor: pointer;
 
       &:hover {
-        color: var(--color-white);
+        color: var(--whiteColor);
       }
       &.active {
-        border-bottom: 2px solid var(--color-white);
+        border-bottom: 2px solid var(--whiteColor);
       }
+    }
+  }
+  .user-nav {
+    width: 64px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--textColor);
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    margin-top: 80px;
+    right: 68px;
+    background-color: var(--panelColor);
+    color: var(--textColor);
+    z-index: 10;
+
+    &:hover {
+      filter: brightness(0.9);
     }
   }
 `;
@@ -70,16 +92,16 @@ export const LinkedinIcon = styled(GrLinkedin)`
 `;
 export const SearchInput = styled.input`
   margin-left: 12px;
-  background-color: var(--color-input);
-  color: var(--color-black);
+  background-color: var(--inputColor);
+  border: none;
+  color: var(--texrtColor);
   font-size: 14px;
   padding: 7.5px 8px;
-  border: none;
   outline: none;
   border-radius: 2px;
 
   &:focus {
-    background-color: var(--color-white);
+    background-color: #c1c1c1;
   }
 `;
 

@@ -1,5 +1,7 @@
-import { useContext } from "react";
-import { DataContext } from "../../providers/DataContext";
+import { useState } from "react";
+import { useAuth } from "../../providers/AuthContext";
+import { useData } from "../../providers/DataContext";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 import {
   Container,
@@ -15,7 +17,11 @@ import {
 const DesktopHeader = () => {
   const {
     userData: { avatarUrl },
-  } = useContext(DataContext);
+  } = useData();
+
+  const { handleLogout } = useAuth();
+
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   return (
     <Container>
@@ -34,12 +40,18 @@ const DesktopHeader = () => {
               <NotificationsIcon />
               <span>Notificaçoes</span>
             </button>
-            <button>
+            <button onClick={() => setMenuIsOpen(!menuIsOpen)}>
               <ProfileCircle src={avatarUrl} />
               <span>
                 Eu <CaretDownIcon />
               </span>
             </button>
+            {menuIsOpen && (
+              <span className="user-nav" onClick={handleLogout}>
+                Sair
+              </span>
+            )}
+            <ThemeSwitcher />
           </nav>
         </div>
       </Wrapper>

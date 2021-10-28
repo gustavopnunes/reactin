@@ -1,16 +1,15 @@
 import { useState } from "react";
-import HeaderForm from "../HeaderForm";
+import FormHeader from "../FormHeader";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Container } from "./styles";
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthContext";
+import { useAuth } from "../../providers/AuthContext";
 
 const Form = () => {
   const [login, setLogin] = useState(true);
 
-  const { loginOrRegisterUser } = useContext(AuthContext);
+  const { loginOrRegisterUser } = useAuth();
 
   const requiredFieldMessage = "Campo Obrigatório!";
 
@@ -46,7 +45,7 @@ const Form = () => {
       user = {
         ...user,
         firstLogin: true,
-        imageUrl:
+        avatarUrl:
           "https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1.png",
       };
     }
@@ -55,7 +54,7 @@ const Form = () => {
 
   return (
     <Container login={login}>
-      <HeaderForm />
+      <FormHeader />
       <h1>{login ? "Entrar" : "Cadastre-se no ReactIn — é grátis!"}</h1>
       {login && <p>Acompanhe as novidades do seu mundo profissional</p>}
       <form onSubmit={handleSubmit(onSubmitFunction)}>

@@ -8,6 +8,7 @@ export const Container = styled.div`
   overflow: hidden;
 
   h1 {
+    color: var(--textColor);
     font-weight: 500;
     font-size: ${(props) => (props.login ? "2rem" : "1.6rem")};
     margin: ${(props) => (props.login ? "0 32px" : "0 16px")};
@@ -19,6 +20,7 @@ export const Container = styled.div`
   }
 
   p {
+    color: var(--textColor);
     text-align: left;
     margin: 8px 32px;
     font-size: 14px;
@@ -43,7 +45,9 @@ export const Container = styled.div`
     input {
       width: 100%;
       max-width: 480px;
-      height: ${(props) => (props.login ? "44px" : "32px")};
+      color: var(--textColor);
+      background-color: var(--inputColor);
+      height: 44px;
       padding: 8px;
       border-radius: 4px;
       outline: none;
@@ -51,9 +55,18 @@ export const Container = styled.div`
       margin-top: ${(props) => (props.login ? "16px" : "0")};
     }
 
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 30px var(--inputColor) inset;
+      box-shadow: 0 0 0 30px var(--inputColor) inset;
+    }
+
+    input:-webkit-autofill {
+      -webkit-text-fill-color: var(--textColor);
+    }
+
     button {
       position: absolute;
-      background-color: var(--color-link);
+      background-color: var(--linkColor);
       border: none;
       border-radius: 20px;
       width: 80%;
@@ -72,7 +85,7 @@ export const Container = styled.div`
       text-align: left;
       margin-left: 4px;
       margin-bottom: 2px;
-      color: rgba(0, 0, 0, 0.6);
+      color: var(--textColor);
 
       &:nth-of-type(2) {
         margin-top: 16px;
@@ -100,20 +113,23 @@ export const Container = styled.div`
     max-width: 480px;
     font-size: 12px;
     margin: 8px;
-    color: rgba(0, 0, 0, 0.6) l;
+    color: var(--textColor);
 
     span {
-      color: var(--color-link);
+      color: var(--linkColor);
       font-weight: bold;
+      cursor: pointer;
     }
   }
 
   .registered-user {
     margin-top: 24px;
+    color: var(--textColor);
 
     span {
       font-weight: bold;
-      color: var(--color-link);
+      color: var(--linkColor);
+      cursor: pointer;
     }
   }
 
@@ -125,7 +141,7 @@ export const Container = styled.div`
     ul {
       list-style: none;
       display: flex;
-      color: rgba(0, 0, 0, 0.6);
+      color: var(--textColor);
       align-items: center;
       justify-content: center;
       position: relative;
@@ -134,6 +150,7 @@ export const Container = styled.div`
       li {
         margin: 8px;
         font-size: 10px;
+        cursor: pointer;
       }
     }
   }

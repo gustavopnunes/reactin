@@ -1,14 +1,15 @@
 import { api } from "../api";
+import toast from "react-hot-toast";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { DataContext } from "./DataContext";
+import { useData } from "./DataContext";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const history = useHistory();
   const [authenticated, setAuthenticated] = useState(false);
-  const { getUserData } = useContext(DataContext);
+  const { getUserData } = useData();
 
   useEffect(() => {
     const token = localStorage.getItem("@ReactIn/token");
@@ -34,12 +35,23 @@ export const AuthProvider = ({ children }) => {
         setAuthenticated(true);
         getUserData(token);
       })
-      .then(() => history.push("/feed"));
+      .then(() => history.push("/feed"))
+      .catch(() => toast.error("Usuário ou senha incorreto!"));
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("@ReactIn/token");
+    history.push("/login");
+    setAuthenticated(false);
   };
 
   return (
-    <AuthContext.Provider value={{ loginOrRegisterUser, authenticated }}>
+    <AuthContext.Provider
+      value={{ loginOrRegisterUser, authenticated, handleLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);

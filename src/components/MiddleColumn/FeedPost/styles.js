@@ -8,36 +8,40 @@ import {
 
 export const Container = styled.div`
   margin-top: 8px;
-  /* min-width: 400px; */
   position: static;
-
+  background-color: var(--panelColor);
+  color: var(--textColor);
   @media (min-width: 1180px) {
     margin-top: 16px;
   }
 `;
 
+const reactionsIcons = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
 export const Row = styled.div`
   display: flex;
-  margin: 0 16px;
+  margin: 4px 16px;
 
   &.heading {
     padding: 12px 0 8px;
 
     h3 {
       font-size: 14px;
-      color: var(--color-black);
     }
     h4,
     time {
       font-size: 12px;
       font-weight: normal;
-      color: var(--color-gray);
     }
   }
   &.likes {
     padding: 8px 0;
     font-size: 12px;
-    color: var(--color-gray);
 
     .circle {
       width: 16px;
@@ -46,12 +50,15 @@ export const Row = styled.div`
 
       &.blue {
         background: #1385bd;
+        ${reactionsIcons}
       }
       &.green {
         background: #6dae4f;
+        ${reactionsIcons}
       }
       &.red {
         background: #df704c;
+        ${reactionsIcons}
       }
 
       & + .circle {
@@ -73,7 +80,7 @@ export const Row = styled.div`
       background: none;
       border: none;
       outline: none;
-      color: var(--color-gray);
+      color: var(--textColor);
       font-size: 14px;
       font-weight: 600;
 
@@ -107,10 +114,11 @@ export const PostContent = styled.div`
   width: 100%;
   height: 72px;
   background-color: #202020d6;
+  color: #d1d1d1;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -80px;
+  margin-top: -77px;
 
   div {
     background-color: #202020d6;
@@ -122,8 +130,12 @@ export const PostContent = styled.div`
     justify-content: center;
 
     h1 {
-      color: #cbcbcb;
       font-size: 1rem;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
     }
   }
 `;
@@ -131,7 +143,7 @@ export const PostContent = styled.div`
 export const Separator = styled.div`
   width: 100%;
   height: 1px;
-  border-top: 1px solid var(--color-separator);
+  border-top: 1px solid var(--separatorColor);
 `;
 
 export const Avatar = styled.img`
@@ -147,10 +159,11 @@ const iconCSS = css`
   width: 24px;
   height: 24px;
   margin-right: 4px;
+  color: var(--textColor);
 `;
 
 export const LikeIcon = styled(AiOutlineLike)`
-  ${iconCSS}
+  ${iconCSS};
 `;
 
 export const CommentIcon = styled(RiMessage2Line)`

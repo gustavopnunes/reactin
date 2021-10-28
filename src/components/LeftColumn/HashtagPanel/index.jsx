@@ -1,10 +1,8 @@
-import React from "react";
-
 import Panel from "../../Panel";
 
 import { Container, HashtagIcon } from "./styles";
 
-const tags = ["rocketseat", "next-level", "node", "react", "developer"];
+const tags = ["provi", "proviWeek", "kenzie-academy", "react", "developer"];
 
 const HashtagPanel = () => {
   return (
@@ -13,7 +11,7 @@ const HashtagPanel = () => {
         <span className="title">Hashtags seguidas</span>
 
         {tags.map((item) => (
-          <span className="tag">
+          <span className="tag" key={item}>
             <HashtagIcon />
             {item}
           </span>

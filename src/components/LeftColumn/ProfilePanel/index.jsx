@@ -1,12 +1,14 @@
-import { useContext } from "react";
-import { DataContext } from "../../../providers/DataContext";
-
+import { useState } from "react";
+import { useData } from "../../../providers/DataContext";
+import { Container } from "./styles";
 import Panel from "../../Panel";
 
-import { Container } from "./styles";
-
 const ProfilePanel = () => {
-  const { userData } = useContext(DataContext);
+  const { userData } = useData();
+  const [randomNumbers] = useState([
+    Math.floor(Math.random() * 100),
+    Math.floor(Math.random() * 100),
+  ]);
   return (
     <Panel>
       <Container>
@@ -27,11 +29,11 @@ const ProfilePanel = () => {
 
         <div className="key-value">
           <span className="key">Quem viu seu perfil</span>
-          <span className="value">{Math.floor(Math.random() * 100)}</span>
+          <span className="value">{randomNumbers[0]}</span>
         </div>
         <div className="key-value">
           <span className="key">Viram sua publicação</span>
-          <span className="value">{Math.floor(Math.random() * 100)}</span>
+          <span className="value">{randomNumbers[1]}</span>
         </div>
       </Container>
     </Panel>
