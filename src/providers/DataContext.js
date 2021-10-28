@@ -2,20 +2,21 @@ import { api } from "../api";
 import { createContext, useEffect, useState, useContext } from "react";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-// import faker from "faker";
 import toast from "react-hot-toast";
+import faker from "faker";
+
+faker.locale = "pt_BR";
 
 export const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
-  const [posts] = useState([]);
-  const [trending] = useState([]);
-  const [isLoading] = useState(true);
+  const [posts, setPosts] = useState([]);
+  const [trending, setTrending] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoadingFeed, setIsLoadingFeed] = useState(false);
-  // const [lastId, setLastId] = useState(0);
 
   const getUserData = (token) => {
     const userId = jwtDecode(token).sub;
@@ -39,8 +40,6 @@ const DataProvider = ({ children }) => {
 
   const url = "https://dummyapi.io/data/v1/post?limit=5&page=";
 
-  //617b08a0bdaa71cf38cf6d72
-
   useEffect(() => {
     setIsLoadingFeed(true);
     axios
@@ -50,32 +49,24 @@ const DataProvider = ({ children }) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
-        // let data = response.data.articles;
-        // let modifiedPosts = [];
-        // let id = lastId;
-        // for (let i = 0; i < data.length; i++) {
-        //   const newPost = {
-        //     ...data[i],
-        //     id: id + 1,
-        //     readers: Math.floor(Math.random() * 1000),
-        //     time: Math.floor(Math.random() * 7 + 1),
-        //     author: {
-        //       name: faker.name.findName(),
-        //       job: faker.name.jobTitle(),
-        //       company: faker.company.companyName(),
-        //       avatarUrl: faker.internet.avatar(),
-        //     },
-        //     reactions: Math.floor(Math.random() * 1000),
-        //   };
-        //   modifiedPosts.push(newPost);
-        //   id++;
-        // }
-        // setLastId(id + 1);
-        // setPosts([...posts, ...modifiedPosts]);
-        // setIsLoading(false);
-        // setTrending(modifiedPosts.slice(0, 5));
-        // return [response.data.articles];
+        console.log(response.data.data);
+        let data = response.data.data;
+        let modifiedPosts = [];
+        for (let i = 0; i < data.length; i++) {
+          const newPost = {
+            ...data[i],
+            time: Math.floor(Math.random() * 7 + 1),
+            author: {
+              job: faker.name.jobTitle(),
+              company: faker.company.companyName(),
+            },
+          };
+          modifiedPosts.push(newPost);
+        }
+        setPosts([...posts, ...modifiedPosts]);
+        setIsLoading(false);
+        setTrending(modifiedPosts.slice(0, 5));
+        return [response.data.articles];
       })
       .catch((error) => toast.error("Algo deu errado ao carregar o feed :("));
     // eslint-disable-next-line
@@ -85,18 +76,20 @@ const DataProvider = ({ children }) => {
     if (reaction === "increment") {
       posts.forEach((post) => {
         if (post.id === postId) {
-          post.reactions += 1;
+          post.likes += 1;
         }
       });
     }
     if (reaction === "decrement") {
       posts.forEach((post) => {
         if (post.id === postId) {
-          post.reactions -= 1;
+          post.likes -= 1;
         }
       });
     }
   };
+
+  console.log(posts);
 
   return (
     <DataContext.Provider

@@ -33,14 +33,16 @@ const FeedPost = () => {
       {posts &&
         posts.map((post) => {
           return (
-            <Container key={post.title}>
+            <Container key={post.text}>
               <Row className="heading">
                 <Avatar
-                  src={post.author.avatarUrl}
-                  alt={`avatar de ${post.author.name}`}
+                  src={post.owner.picture}
+                  alt={`avatar de ${post.owner.firstName}`}
                 />
                 <Column>
-                  <h3>{post.author.name}</h3>
+                  <h3>
+                    {post.owner.firstName} {post.owner.lastName}
+                  </h3>
                   <h4>
                     {post.author.job} @ {post.author.company}
                   </h4>
@@ -48,22 +50,14 @@ const FeedPost = () => {
                 </Column>
               </Row>
               <PostImage
-                src={post.urlToImage || "https://placeimg.com/640/480/tech"}
-                alt={post.title}
+                src={post.image || "https://placeimg.com/640/480/tech"}
+                alt={post.text}
                 height="320px"
                 width="400px"
               />
               <PostContent>
                 <div>
-                  <h1>
-                    <a
-                      href={post.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {post.title}
-                    </a>
-                  </h1>
+                  <h1>{post.text}</h1>
                 </div>
               </PostContent>
               <Row className="likes">
@@ -85,7 +79,7 @@ const FeedPost = () => {
                 >
                   <FiHeart />
                 </span>
-                <span className="number">{post.reactions}</span>
+                <span className="number">{post.likes}</span>
               </Row>
               <Row>
                 <Separator />

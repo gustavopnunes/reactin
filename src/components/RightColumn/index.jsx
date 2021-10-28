@@ -7,15 +7,15 @@ const RightColumn = ({ isLoading }) => {
   const { trending } = useData();
   const courses = [
     {
-      title: "Fundamentos da Contabilidade",
+      text: "Fundamentos da Contabilidade",
       subtext: "Kay Stice e Jim Stice",
     },
     {
-      title: "Introdução à Ciência de Dados",
+      text: "Introdução à Ciência de Dados",
       subtext: "Doug Rose",
     },
     {
-      title: "Construindo Confiança",
+      text: "Construindo Confiança",
       subtext: "Brenda Bailey",
     },
   ];

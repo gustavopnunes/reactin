@@ -1,4 +1,5 @@
 import Panel from "../../Panel";
+
 import { Container } from "./styles";
 
 const TrendingPanel = ({ title, topics }) => {
@@ -10,10 +11,10 @@ const TrendingPanel = ({ title, topics }) => {
           {topics &&
             topics.map((topic) => {
               return (
-                <li key={topic.title}>
+                <li key={topic.text}>
                   <span className="bullet" />
                   <span className="news">
-                    <span className="head">{topic.title}</span>
+                    <span className="head">{topic.text}</span>
                     <span className="subtext">
                       {topic.subtext ||
                         `${topic.time}d • ${topic.readers} leitores`}
