@@ -49,7 +49,6 @@ const DataProvider = ({ children }) => {
         },
       })
       .then((response) => {
-        console.log(response.data.data);
         let data = response.data.data;
         let modifiedPosts = [];
         for (let i = 0; i < data.length; i++) {
@@ -88,8 +87,6 @@ const DataProvider = ({ children }) => {
       });
     }
   };
-
-  console.log(posts);
 
   return (
     <DataContext.Provider
