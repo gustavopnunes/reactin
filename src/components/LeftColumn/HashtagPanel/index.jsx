@@ -1,5 +1,4 @@
 import Panel from "../../Panel";
-
 import { Container, HashtagIcon } from "./styles";
 
 const tags = ["provi", "proviWeek", "kenzie-academy", "react", "developer"];

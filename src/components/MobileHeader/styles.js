@@ -55,7 +55,7 @@ export const SearchInput = styled.input`
   border-radius: 2px;
 
   &:focus {
-    /* background: var(--textColor); */
+    filter: brightness(140%);
   }
 `;
 

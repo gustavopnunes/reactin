@@ -11,5 +11,10 @@ export const Container = styled.div`
   span {
     color: var(--linkColor);
     cursor: pointer;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 `;

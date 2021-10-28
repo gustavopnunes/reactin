@@ -4,7 +4,6 @@ import { useData } from "../../../providers/DataContext";
 import { BiLike } from "react-icons/bi";
 import { FaHandsWash } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
-import faker from "faker";
 
 import {
   Container,
@@ -20,16 +19,14 @@ import {
   PostContent,
 } from "./styles";
 
-faker.locale = "pt_BR";
-
 const FeedPost = () => {
   const { posts, changePostReactions } = useData();
   const [incrementingReaction, setIncrementingReaction] = useState(false);
 
-  const handleReactions = (postTitle) => {
+  const handleReactions = (postId) => {
     const reaction = incrementingReaction ? "decrement" : "increment";
     setIncrementingReaction(!incrementingReaction);
-    changePostReactions(reaction, postTitle);
+    changePostReactions(reaction, postId);
   };
   return (
     <Panel>
@@ -47,11 +44,11 @@ const FeedPost = () => {
                   <h4>
                     {post.author.job} @ {post.author.company}
                   </h4>
-                  <time>4d</time>
+                  <time>{post.time}d</time>
                 </Column>
               </Row>
               <PostImage
-                src={post.urlToImage}
+                src={post.urlToImage || "https://placeimg.com/640/480/tech"}
                 alt={post.title}
                 height="320px"
                 width="400px"
@@ -69,17 +66,23 @@ const FeedPost = () => {
                   </h1>
                 </div>
               </PostContent>
-              <Row
-                className="likes"
-                onClick={() => handleReactions(post.title)}
-              >
-                <span className="circle blue">
+              <Row className="likes">
+                <span
+                  className="circle blue"
+                  onClick={() => handleReactions(post.id)}
+                >
                   <BiLike />
                 </span>
-                <span className="circle green">
+                <span
+                  className="circle green"
+                  onClick={() => handleReactions(post.id)}
+                >
                   <FaHandsWash />
                 </span>
-                <span className="circle red">
+                <span
+                  className="circle red"
+                  onClick={() => handleReactions(post.id)}
+                >
                   <FiHeart />
                 </span>
                 <span className="number">{post.reactions}</span>
@@ -89,10 +92,8 @@ const FeedPost = () => {
               </Row>
               <Row className="actions">
                 <button>
-                  <LikeIcon />
-                  <span onClick={() => handleReactions(post.title)}>
-                    Gostei
-                  </span>
+                  <LikeIcon onClick={() => handleReactions(post.id)} />
+                  <span onClick={() => handleReactions(post.id)}>Gostei</span>
                 </button>
                 <button>
                   <CommentIcon />

@@ -14,7 +14,6 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     padding: 18px 24px;
-    background-color: var(--colorPanel);
 
     > span {
       margin-left: 8px;

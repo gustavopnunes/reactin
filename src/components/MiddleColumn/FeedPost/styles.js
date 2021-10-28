@@ -118,10 +118,10 @@ export const PostContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -77px;
+  margin-top: -76px;
 
   div {
-    background-color: #202020d6;
+    background-color: #000000c4;
     width: 100%;
     height: 100%;
     padding: 8px;

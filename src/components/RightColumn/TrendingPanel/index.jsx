@@ -1,5 +1,4 @@
 import Panel from "../../Panel";
-
 import { Container } from "./styles";
 
 const TrendingPanel = ({ title, topics }) => {

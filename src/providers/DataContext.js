@@ -3,6 +3,7 @@ import { createContext, useEffect, useState, useContext } from "react";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 import faker from "faker";
+import toast from "react-hot-toast";
 
 export const DataContext = createContext();
 
@@ -14,10 +15,11 @@ const DataProvider = ({ children }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoadingFeed, setIsLoadingFeed] = useState(false);
+  const [lastId, setLastId] = useState(0);
 
   const getUserData = (token) => {
     const userId = jwtDecode(token).sub;
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+    api.defaults.headers.Authorization = `Bearer ${token.slice(1, -1)}`;
     api.get(`/users/${userId}`).then((response) => {
       setUserData(response.data);
       response.data.firstLogin && setModalIsOpen(true);
@@ -27,9 +29,12 @@ const DataProvider = ({ children }) => {
   const patchUserData = (data) => {
     const token = localStorage.getItem("@ReactIn/token");
     api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-    api.patch(`/users/${userData.id}`, data).then(() => {
-      window.location.reload();
-    });
+    api
+      .patch(`/users/${userData.id}`, data)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch(() => toast.error("Algo deu errado ao atualizar seus dados :("));
   };
 
   const url =
@@ -42,9 +47,11 @@ const DataProvider = ({ children }) => {
       .then((response) => {
         let data = response.data.articles;
         let modifiedPosts = [];
+        let id = lastId;
         for (let i = 0; i < data.length; i++) {
           const newPost = {
             ...data[i],
+            id: id + 1,
             readers: Math.floor(Math.random() * 1000),
             time: Math.floor(Math.random() * 7 + 1),
             author: {
@@ -56,27 +63,29 @@ const DataProvider = ({ children }) => {
             reactions: Math.floor(Math.random() * 1000),
           };
           modifiedPosts.push(newPost);
+          id++;
         }
+        setLastId(id + 1);
         setPosts([...posts, ...modifiedPosts]);
         setIsLoading(false);
         setTrending(modifiedPosts.slice(0, 5));
         return [response.data.articles];
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error("Algo deu errado ao carregar o feed :("));
     // eslint-disable-next-line
   }, [currentPage]);
 
-  const changePostReactions = (reaction, postTitle) => {
+  const changePostReactions = (reaction, postId) => {
     if (reaction === "increment") {
       posts.forEach((post) => {
-        if (post.title === postTitle) {
+        if (post.id === postId) {
           post.reactions += 1;
         }
       });
     }
     if (reaction === "decrement") {
       posts.forEach((post) => {
-        if (post.title === postTitle) {
+        if (post.id === postId) {
           post.reactions -= 1;
         }
       });

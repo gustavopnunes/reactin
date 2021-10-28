@@ -48,10 +48,10 @@ export const Wrapper = styled.div`
       cursor: pointer;
 
       &:hover {
-        color: var(--whiteColor);
+        color: #fff;
       }
       &.active {
-        border-bottom: 2px solid var(--whiteColor);
+        border-bottom: 2px solid #fff;
       }
     }
   }
@@ -80,12 +80,13 @@ export const Wrapper = styled.div`
 const generalIconCSS = css`
   width: 24px;
   height: 24px;
+  color: var(--iconColor);
 `;
 
 export const LinkedinIcon = styled(GrLinkedin)`
   height: 34px;
   width: 34px;
-  color: var(--color-linkedin);
+  color: var(--linkedinColor);
   background-color: #fff;
   border-radius: 4px;
   flex-shrink: 0;
@@ -101,7 +102,7 @@ export const SearchInput = styled.input`
   border-radius: 2px;
 
   &:focus {
-    background-color: #c1c1c1;
+    filter: brightness(140%);
   }
 `;
 

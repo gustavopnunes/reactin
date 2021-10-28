@@ -7,7 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: ${(props) => props.theme.background};
+    background: ${(props) => props.theme.colorBackground};
 
   }
   html, body, #root {
@@ -22,14 +22,12 @@ export const GlobalStyles = createGlobalStyle`
     --subTextColor: ${(props) => props.theme.subTextColor};
     --feedHeaderColor: ${(props) => props.theme.feedHeaderColor};
     --panelColor: ${(props) => props.theme.panelColor};
-    --color-linkedin: #0077b5;
+    --linkedinColor: #0077b5;
     --inputColor: ${(props) => props.theme.inputColor};
     --iconColor: ${(props) => props.theme.iconColor};
     --hashtagColor: #7a8b98;
-    --modalBackgroundColor: #f5f5f5;
     --linkColor: #0073b1;
     --separatorColor: rgba(0,0,0,0.15);
-    --whiteColor: #fff;
   }
 
   button {
@@ -47,12 +45,13 @@ export const GlobalStyles = createGlobalStyle`
     border-radius: 12px;
     font-size: 10px;
     position: fixed;
-    top: 20%;
+    top: 10%;
     bottom: 10%;
     right: 10%;
     left: 10%;
     text-align: center;
     max-width: 480px;
+    height: 90%;
     max-height: 480px;
     outline: none;
     margin: 0 auto;
@@ -108,7 +107,7 @@ export const GlobalStyles = createGlobalStyle`
     button {
       width: 120px;
       height: 32px;
-      background-color: var(--color-linkedin);
+      background-color: var(--linkedinColor);
       color: #fff;
       font-weight: bold;
       border-radius: 4px;

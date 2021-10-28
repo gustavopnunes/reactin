@@ -5,7 +5,7 @@ export const Container = styled.div``;
 
 const generalIcons = css`
   color: var(--textColor);
-  margin: 2px;
+  margin: 2px 0 0 8px;
 `;
 
 export const SunIcon = styled(BsSun)`

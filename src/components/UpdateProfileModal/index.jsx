@@ -36,7 +36,7 @@ function UpdateProfileModal() {
   };
 
   return (
-    <ReactModal className="Modal" isOpen={modalIsOpen}>
+    <ReactModal className="Modal" isOpen={modalIsOpen} ariaHideApp={false}>
       <form onSubmit={(e) => updateUserData(e)}>
         <h1>Complete seu cadastro!</h1>
         <p>
@@ -44,7 +44,7 @@ function UpdateProfileModal() {
           perfil
         </p>
         <img src={uploadedImg || userData.avatarUrl} alt="user avatar" />
-        <label for="img-upload" onClick={() => setIsChangingImg(true)}>
+        <label htmlFor="img-upload" onClick={() => setIsChangingImg(true)}>
           {isUploadingImg ? "Salvando..." : "Alterar foto"}
         </label>
         {isChangingImg && (

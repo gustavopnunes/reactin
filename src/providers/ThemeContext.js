@@ -1,15 +1,21 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { dark } from "../style/dark";
 import { light } from "../style/light";
 
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(light);
+  const [theme, setTheme] = useState({});
 
   const handleChangeTheme = () => {
-    setTheme(theme === dark ? light : dark);
+    setTheme((currentTheme) => (currentTheme === dark ? light : dark));
+    localStorage.setItem("@Reactin/theme", theme.title);
   };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("@Reactin/theme");
+    savedTheme === "light" ? setTheme(dark) : setTheme(light);
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, handleChangeTheme }}>
