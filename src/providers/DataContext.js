@@ -4,6 +4,7 @@ import jwtDecode from "jwt-decode";
 import axios from "axios";
 import faker from "faker";
 import toast from "react-hot-toast";
+import apiNews from "api-news-world";
 
 export const DataContext = createContext();
 
@@ -16,6 +17,12 @@ const DataProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoadingFeed, setIsLoadingFeed] = useState(false);
   const [lastId, setLastId] = useState(0);
+
+  useEffect(() => {
+    apiNews
+      .getNews("br", "pt", "technology")
+      .then((response) => console.log(response));
+  }, []);
 
   const getUserData = (token) => {
     const userId = jwtDecode(token).sub;
@@ -37,13 +44,13 @@ const DataProvider = ({ children }) => {
       .catch(() => toast.error("Algo deu errado ao atualizar seus dados :("));
   };
 
-  const url =
-    "https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?category=technology&country=br&apiKey=3ff3b1588eea4b9c867d35ace51a1baa&pageSize=5&page=";
+  // const url =
+  //   "https://newsapi.org/v2/top-headlines?category=technology&country=br&apiKey=3ff3b1588eea4b9c867d35ace51a1baa&pageSize=5&page=";
 
   useEffect(() => {
     setIsLoadingFeed(true);
     axios
-      .get(`${url}${currentPage}`)
+      .get(`aasdasd${currentPage}`)
       .then((response) => {
         let data = response.data.articles;
         let modifiedPosts = [];
