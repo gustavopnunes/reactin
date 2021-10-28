@@ -44,13 +44,13 @@ const DataProvider = ({ children }) => {
       .catch(() => toast.error("Algo deu errado ao atualizar seus dados :("));
   };
 
-  // const url =
-  //   "https://newsapi.org/v2/top-headlines?category=technology&country=br&apiKey=3ff3b1588eea4b9c867d35ace51a1baa&pageSize=5&page=";
+  const url =
+    "http://newsapi.org/v2/top-headlines?apiKey=94c62a1273524c719ba2648ff3005961&country=br&language=pt&category=technology&pageSize=5&page=";
 
   useEffect(() => {
     setIsLoadingFeed(true);
     axios
-      .get(`aasdasd${currentPage}`)
+      .get(`${url}${currentPage}`)
       .then((response) => {
         let data = response.data.articles;
         let modifiedPosts = [];
