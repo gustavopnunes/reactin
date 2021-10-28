@@ -131,6 +131,7 @@ export const PostContent = styled.div`
 
     h1 {
       font-size: 1rem;
+      cursor: pointer;
 
       a {
         text-decoration: none;
