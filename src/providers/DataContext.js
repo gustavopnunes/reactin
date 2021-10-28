@@ -2,20 +2,20 @@ import { api } from "../api";
 import { createContext, useEffect, useState, useContext } from "react";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-import faker from "faker";
+// import faker from "faker";
 import toast from "react-hot-toast";
 
 export const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
-  const [posts, setPosts] = useState([]);
-  const [trending, setTrending] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [posts] = useState([]);
+  const [trending] = useState([]);
+  const [isLoading] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoadingFeed, setIsLoadingFeed] = useState(false);
-  const [lastId, setLastId] = useState(0);
+  // const [lastId, setLastId] = useState(0);
 
   const getUserData = (token) => {
     const userId = jwtDecode(token).sub;
