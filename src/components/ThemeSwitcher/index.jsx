@@ -12,9 +12,9 @@ function ThemeSwitcher() {
       checkedIcon={<SunIcon />}
       uncheckedIcon={<MoonIcon />}
       height={20}
-      offColor="#fff"
+      offColor="#b3b3b3"
       offHandleColor="#0073b1"
-      onColor="#0e0e0e"
+      onColor="#4b4b4b"
       onHandleColor="#0073b1"
     />
   );

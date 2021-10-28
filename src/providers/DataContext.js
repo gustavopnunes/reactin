@@ -38,7 +38,7 @@ const DataProvider = ({ children }) => {
   };
 
   const url =
-    "https://newsapi.org/v2/top-headlines?category=technology&country=br&apiKey=3ff3b1588eea4b9c867d35ace51a1baa&pageSize=5&page=";
+    "https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?category=technology&country=br&apiKey=3ff3b1588eea4b9c867d35ace51a1baa&pageSize=5&page=";
 
   useEffect(() => {
     setIsLoadingFeed(true);
