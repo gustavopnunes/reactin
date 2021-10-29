@@ -17,7 +17,7 @@ const TrendingPanel = ({ title, topics }) => {
                     <span className="head">{topic.text}</span>
                     <span className="subtext">
                       {topic.subtext ||
-                        `${topic.time}d • ${topic.readers} leitores`}
+                        `${topic.time}d • ${topic.likes} leitores`}
                     </span>
                   </span>
                 </li>
