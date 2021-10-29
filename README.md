@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# ReactIn - LinkedIn clone built with react
+<p> This project was made as a challenge for Provi. I chose Linkedin because it's the social network I spend more time at the moment.  </p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Live demo: https://reactin.vercel.app
+### Default user for tests: 
+email:    dev@mail.com
+<br />password: 123456
 
-## Available Scripts
+or you can create your own user, but be aware that it will expire in an hour or two. That's a json server limitation.
 
-In the project directory, you can run:
+#### The following technologies were used:
+- ReactJS for all application
+- Styled Components for components and themes 
+- React Router Dom for routes management
+- Axios for HTTP requests
+- React Icons for header, feed and reaction icons
+- React Hook Forms + Yup for forms validation
+- React Modal for update profile infos
+- React Switch for themes switcher
+- jwt-decode to get user infos from access token
+- Dummy api for feed posts and authors
+- Faker to generate some data not provided from dummy api
+- json-server + json-server-auth to manage user data and authentication
+- React Context API in posts, users data and themes management. 
+- Several hours of rock playlists on Spotify
 
-### `yarn start`
+### Resources: 
+- Light and dark themes
+- During first login, a modal will be triggered to complete the profile. All infos will be sent to json-server and then reloaded in page
+- Feed is loaded dynamically with infinite scrolL
+- Posts reactions can be incremented or decrementd by clicking in reactions or like buttons
+- Access token and themes preferente are saved in browser's local storage
+- Posts are random from dummy api, but most are puppies. I was using google news api for posts, but during deploy, I realized they charge for requests not coming from localhost :( (in the end feed is most beatiful with that puppies then the trending news)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+PS: All new data on registered on json server expires afer one or two hours. So, if you don't wanna spend yout time registering new users, you can use the default user mentioned above. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### server repo: https://github.com/gustavopnunes/reactin-server
